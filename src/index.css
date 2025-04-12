@@ -14,7 +14,7 @@
 body {
   padding: 2rem;
   font-family: "Knewave", sans-serif;
-  background-image: url("../public/bg.jpg");
+  background-image: url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
