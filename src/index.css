@@ -1,0 +1,20 @@
+:root {
+  --purple: #6571c2;
+  --boxWidth: 180px;
+  --boxHeight: 100px;
+  --textShadow: 1px 1px 2px black;
+}
+
+.knewave-regular {
+  font-family: "Knewave", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  padding: 2rem;
+  font-family: "Knewave", sans-serif;
+  background-image: url("../public/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

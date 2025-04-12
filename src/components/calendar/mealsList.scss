@@ -1,0 +1,38 @@
+.mealsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  .mealBox {
+    width: var(--boxWidth);
+    height: var(--boxHeight);
+    background-color: white;
+    box-shadow: 0 0 1px black;
+
+    textarea {
+      border: 1px solid black;
+      width: var(--boxWidth);
+      height: var(--boxHeight);
+      font-family: Georgia, "Times New Roman", Times, serif;
+      padding: 5px;
+    }
+  }
+}
+
+button {
+  width: 70px;
+  height: 40px;
+  padding: 10px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 1px black;
+  &:hover {
+    background-color: var(--purple);
+    border: 0;
+  }
+}

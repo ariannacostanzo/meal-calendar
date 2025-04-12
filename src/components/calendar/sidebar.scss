@@ -1,0 +1,18 @@
+.sidebar {
+  flex-basis: var(--boxHeight);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .mealType {
+    background-color: var(--purple);
+    width: var(--boxHeight);
+    height: var(--boxHeight);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: var(--textShadow);
+    box-shadow: var(--textShadow);
+  }
+}

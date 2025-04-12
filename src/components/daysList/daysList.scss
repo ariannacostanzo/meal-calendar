@@ -1,0 +1,14 @@
+.daysList {
+  display: flex;
+  gap: 40px;
+  margin-left: 200px;
+
+  .day {
+    padding: 10px 0;
+    width: var(--boxWidth);
+    color: var(--purple);
+    text-transform: uppercase;
+    background-color: #ffde58;
+    text-align: center;
+  }
+}
