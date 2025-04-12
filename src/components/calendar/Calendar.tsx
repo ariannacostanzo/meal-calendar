@@ -1,5 +1,5 @@
 import "./calendar.scss";
-import MealsList from "./mealsList";
+import MealsList from "./MealsList";
 import Sidebar from "./Sidebar";
 
 const Calendar = () => {
