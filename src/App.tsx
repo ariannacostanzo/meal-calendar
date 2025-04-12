@@ -1,5 +1,6 @@
 import Calendar from "./components/calendar/Calendar";
 import DaysList from "./components/daysList/DaysList";
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
           <Header />
           <DaysList />
           <Calendar />
+          <Footer />
         </div>
       </div>
     </>
