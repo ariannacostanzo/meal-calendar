@@ -3,6 +3,7 @@
   --boxWidth: 180px;
   --boxHeight: 100px;
   --textShadow: 1px 1px 2px black;
+  --yellow: #ffde58;
 }
 
 .knewave-regular {
@@ -23,5 +24,5 @@ body {
   flex-shrink: 0;
 }
 .container {
-  padding: 0 2rem;
+  padding: 0 2rem 2rem 2rem;
 }

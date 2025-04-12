@@ -1,10 +1,30 @@
+import React from "react";
 import "./header.scss";
 
-const Header = () => {
+interface HeaderProps {
+  downloadJSON: () => void;
+  handleFileUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ downloadJSON, handleFileUpload }) => {
   return (
-    <>
-      <header>Dieta settimanale</header>
-    </>
+    <header>
+      <h4>Dieta settimanale</h4>
+      <div className="button-container">
+        <input
+          type="file"
+          accept=".json"
+          onChange={handleFileUpload}
+          style={{ display: "none" }}
+          id="file-upload"
+        />
+        <label htmlFor="file-upload" style={{ cursor: "pointer" }}>
+          📤 Importa JSON
+        </label>
+        <button onClick={downloadJSON}>💾</button>
+      </div>
+    </header>
   );
 };
+
 export default Header;

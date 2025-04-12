@@ -3,4 +3,29 @@ header {
   font-size: 40px;
   color: var(--purple);
   text-shadow: var(--textShadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h4 {
+    margin: 0;
+  }
+
+  .button-container {
+    margin: 2rem 3.7rem 2rem 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    label {
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border-radius: 35px;
+      padding: 5px 1rem;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
 }
