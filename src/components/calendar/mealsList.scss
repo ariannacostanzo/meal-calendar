@@ -36,3 +36,9 @@ button {
     border: 0;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .mealsList {
+    flex-wrap: wrap;
+  }
+}

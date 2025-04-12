@@ -5,9 +5,13 @@ import Header from "./components/header/Header";
 function App() {
   return (
     <>
-      <Header />
-      <DaysList />
-      <Calendar />
+      <div className="myApp">
+        <div className="container">
+          <Header />
+          <DaysList />
+          <Calendar />
+        </div>
+      </div>
     </>
   );
 }

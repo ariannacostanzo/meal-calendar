@@ -12,9 +12,16 @@
 }
 
 body {
-  padding: 2rem;
   font-family: "Knewave", sans-serif;
   background-image: url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.myApp {
+  display: flex;
+  flex-shrink: 0;
+}
+.container {
+  padding: 0 2rem;
 }
