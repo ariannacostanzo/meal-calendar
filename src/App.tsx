@@ -1,25 +1,18 @@
-import { useState } from "react";
-import Calendar from "./components/calendar/Calendar";
-import DaysList from "./components/daysList/DaysList";
-import Footer from "./components/footer/Footer";
-import Header from "./components/header/Header";
+import { useEffect, useState } from "react";
+import "./App.scss";
+import { Day, emptyMeals, Meal } from "./scripts/interfaces";
 
 function App() {
-  const totalBoxes = 7 * 5;
-  const [texts, setTexts] = useState(() => {
-    const saved = localStorage.getItem("mealNotes");
-    return saved ? JSON.parse(saved) : Array(totalBoxes).fill("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [savedMeals, setSavedMeals] = useState<Day[]>(() => {
+    const saved = localStorage.getItem("SavedMeals");
+    return saved ? JSON.parse(saved) : emptyMeals;
   });
 
-  const downloadJSON = () => {
-    const data = JSON.stringify(texts);
-    const blob = new Blob([data], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "mealsData.json";
-    link.click();
-  };
+  const [newIngredients, setNewIngredients] = useState<string>("");
+  const [editingMealId, setEditingMealId] = useState<string | null>(null);
+
+  const activeDay = savedMeals.find((day) => day.index === activeIndex)!;
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -30,8 +23,11 @@ function App() {
           const fileContents = reader.result as string;
           const parsedData = JSON.parse(fileContents);
 
-          if (Array.isArray(parsedData) && parsedData.length === texts.length) {
-            setTexts(parsedData);
+          if (
+            Array.isArray(parsedData) &&
+            parsedData.length === savedMeals.length
+          ) {
+            setSavedMeals(parsedData);
           } else {
             alert(
               "Il formato del file non è corretto o la lunghezza dei dati non corrisponde."
@@ -46,23 +42,113 @@ function App() {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (index: any, value: string) => {
-    const newTexts = [...texts];
-    newTexts[index] = value;
-    setTexts(newTexts);
+  const downloadJSON = () => {
+    const data = JSON.stringify(savedMeals);
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "diet.json";
+    link.click();
   };
+
+  const changeDayShown = (meal: Day) => {
+    setActiveIndex(meal.index);
+  };
+
+  const modifyIngredients = (meal: Meal) => {
+    const modifiedMeals = savedMeals.map((day) => {
+      if (day.index === activeDay.index) {
+        return {
+          ...day,
+          meals: day.meals.map((m) => {
+            if (m.id === meal.id) {
+              return {
+                ...m,
+                ingredients: newIngredients,
+              };
+            }
+            return m;
+          }),
+        };
+      }
+      return day;
+    });
+    setSavedMeals(modifiedMeals);
+    setEditingMealId(null);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("SavedMeals", JSON.stringify(savedMeals));
+  }, [savedMeals]);
 
   return (
     <div className="myApp">
-      <div className="container">
-        <Header
-          downloadJSON={downloadJSON}
-          handleFileUpload={handleFileUpload}
-        />
-        <DaysList />
-        <Calendar texts={texts} handleChange={handleChange} />
-        <Footer />
+      <div className="app-container">
+        <div className="background-container">
+          <img src="/mobilebg.webp" alt="" className="background-img" />
+        </div>
+        <div className="weekdays">
+          {savedMeals.map((meal, i) => (
+            <div
+              className={`day-label ${activeIndex == i ? "active-day" : ""}`}
+              key={`day${i}`}
+              onClick={() => changeDayShown(meal)}
+            >
+              {meal.day}
+            </div>
+          ))}
+        </div>
+        <div className="dayShow">
+          {activeDay.meals.map((meal, i) => (
+            <div key={`meal${i}-day${activeDay.index}`}>
+              <div className="meal-type"> {meal.type}</div>
+              {editingMealId === meal.id ? (
+                <div className="meal-ingredients">
+                  <input
+                    type="text"
+                    value={newIngredients}
+                    onChange={(e) => setNewIngredients(e.target.value)}
+                  />
+                  <button
+                    className="modify-btn"
+                    onClick={() => modifyIngredients(meal)}
+                  >
+                    ✔️
+                  </button>
+                </div>
+              ) : (
+                <div className="meal-ingredients">
+                  {meal.ingredients}
+                  <button
+                    className="modify-btn"
+                    onClick={() => {
+                      setEditingMealId(meal.id);
+                      setNewIngredients(meal.ingredients);
+                    }}
+                  >
+                    ✒️
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+          <div className="newHeader">
+            <div className="button-container">
+              <input
+                type="file"
+                accept=".json"
+                onChange={handleFileUpload}
+                style={{ display: "none" }}
+                id="file-upload"
+              />
+              <label htmlFor="file-upload" style={{ cursor: "pointer" }}>
+                📤 Importa JSON
+              </label>
+              <button onClick={downloadJSON}>💾</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -4,6 +4,8 @@
   --boxHeight: 100px;
   --textShadow: 1px 1px 2px black;
   --yellow: #ffde58;
+  --orange: #ffb48b;
+  --green: #91ceb5;
 }
 
 .knewave-regular {
@@ -14,15 +16,17 @@
 
 body {
   font-family: "Knewave", sans-serif;
-  background-image: url("/bg.jpg");
+  /* background-image: url("/bg.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.myApp {
+/* .myApp {
   display: flex;
   flex-shrink: 0;
-}
+} */
 .container {
   padding: 0 2rem 2rem 2rem;
 }
