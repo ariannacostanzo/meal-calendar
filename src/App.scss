@@ -74,7 +74,7 @@
 .weekdays {
   display: flex;
   font-weight: bold;
-  margin: 2rem 1rem 1rem 1rem;
+  margin: 2rem 0.5rem 1rem 0.5rem;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
@@ -114,9 +114,8 @@
 }
 
 .meal-ingredients {
-  margin: 1rem 3.7rem;
+  margin: 1rem;
   font-size: 14px;
-  padding: 0 3rem;
 }
 
 input {
