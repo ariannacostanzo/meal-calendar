@@ -5,17 +5,17 @@
   --textShadow: 1px 1px 2px black;
   --yellow: #ffde58;
   --orange: #ffb48b;
-  --green: #91ceb5;
+  --green: #50a381;
 }
 
-.knewave-regular {
-  font-family: "Knewave", system-ui;
+.delius-regular {
+  font-family: "Delius", cursive;
   font-weight: 400;
   font-style: normal;
 }
 
 body {
-  font-family: "Knewave", sans-serif;
+  font-family: "Delius", cursive;
   /* background-image: url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover; */

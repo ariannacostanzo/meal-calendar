@@ -85,9 +85,9 @@ function App() {
   return (
     <div className="myApp">
       <div className="app-container">
-        <div className="background-container">
+        {/* <div className="background-container">
           <img src="/mobilebg.webp" alt="" className="background-img" />
-        </div>
+        </div> */}
         <div className="weekdays">
           {savedMeals.map((meal, i) => (
             <div

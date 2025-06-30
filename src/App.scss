@@ -3,6 +3,9 @@
   height: 100vh;
   overflow-x: hidden;
   position: relative;
+  background-image: url("/bgwhite.jpg");
+  background-color: rgba(255, 255, 255, 0.7);
+  background-blend-mode: lighten;
 }
 
 .background-container {
@@ -25,11 +28,11 @@
 .newHeader {
   padding: 1rem;
   .button-container {
-    margin: 2rem;
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
 
     label {
       font-size: 18px;
@@ -70,12 +73,13 @@
 
 .weekdays {
   display: flex;
-  margin: 6rem 4rem 1rem 4rem;
+  font-weight: bold;
+  margin: 2rem 4rem 1rem 4rem;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
 
   .day-label {
     background-color: white;
@@ -99,6 +103,9 @@
 
 .dayShow {
   text-align: center;
+  padding: 1rem 0;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .meal-type {
@@ -110,6 +117,13 @@
   margin: 1rem 3.7rem;
   font-size: 14px;
   padding: 0 3rem;
+}
+
+input {
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 .modify-btn {
