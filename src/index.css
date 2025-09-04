@@ -6,6 +6,7 @@
   --yellow: #ffde58;
   --orange: #ffb48b;
   --green: #50a381;
+  --transition: 0.3s ease;
 }
 
 .delius-regular {

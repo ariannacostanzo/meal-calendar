@@ -1,3 +1,9 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .app-container {
   width: 100vw;
   height: 100vh;
@@ -134,5 +140,45 @@ input {
 
   &:hover {
     background-color: var(--orange);
+  }
+}
+
+.buttonStyle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.myApp {
+  position: relative;
+}
+
+.notes-modal {
+  position: absolute;
+  background-color: white;
+  color: black;
+  width: 80%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  padding: 2rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border-radius: 20px;
+
+  .closeBtn {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    font-size: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--orange);
+    }
   }
 }

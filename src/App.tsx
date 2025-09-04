@@ -8,9 +8,17 @@ function App() {
     const saved = localStorage.getItem("SavedMeals");
     return saved ? JSON.parse(saved) : emptyMeals;
   });
+  const [savedNotes, setSavedNotes] = useState<string>(() => {
+    const saved = localStorage.getItem("SavedNotes");
+    return saved ? JSON.parse(saved) : "";
+  });
+  const [editingNotes, setEditingNotes] = useState<boolean>(false);
 
   const [newIngredients, setNewIngredients] = useState<string>("");
   const [editingMealId, setEditingMealId] = useState<string | null>(null);
+
+  // modale
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const activeDay = savedMeals.find((day) => day.index === activeIndex)!;
 
@@ -79,11 +87,37 @@ function App() {
   };
 
   useEffect(() => {
+    setSavedNotes(
+      "Quantità della mattina: pane 15gr, gallette di mais 10gr, fette integrali wasa 12gr, salumi 20gr, oppure bresaola 15gr"
+    );
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("SavedMeals", JSON.stringify(savedMeals));
   }, [savedMeals]);
 
   return (
     <div className="myApp">
+      {isModalOpen && (
+        <div className="notes-modal">
+          {savedNotes}
+          {/* fare meglio */}
+          <div className="notes-add-btn">
+            <button
+              className="modify-btn"
+              onClick={() => {
+                setEditingNotes(true);
+              }}
+            >
+              ✒️
+            </button>
+          </div>
+          <button onClick={() => setIsModalOpen(false)} className="closeBtn">
+            x
+          </button>
+        </div>
+      )}
+
       <div className="app-container">
         {/* <div className="background-container">
           <img src="/mobilebg.webp" alt="" className="background-img" />
@@ -146,6 +180,12 @@ function App() {
                 📤 Importa JSON
               </label>
               <button onClick={downloadJSON}>💾</button>
+              <button
+                className="buttonStyle"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Note
+              </button>
             </div>
           </div>
         </div>
